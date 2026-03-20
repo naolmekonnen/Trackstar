@@ -21,7 +21,7 @@ export default function RecapPage() {
   ];
 
   return (
-    <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto px-4 pt-4 pb-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <Link href="/run" className="flex items-center gap-1 text-sm text-white/40">

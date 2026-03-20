@@ -24,7 +24,7 @@ export default function PlanPage() {
   const week = trainingPlan[selectedWeek];
 
   return (
-    <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto px-4 pt-4 pb-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}

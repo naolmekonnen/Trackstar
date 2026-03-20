@@ -10,7 +10,7 @@ export default function PersonaPage() {
   const allPersonas = Object.values(personas);
 
   return (
-    <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto px-4 pt-4 pb-8">
       <Link href="/home" className="flex items-center gap-1 text-sm text-white/40 mb-6">
         <ChevronLeft className="w-4 h-4" /> Back
       </Link>

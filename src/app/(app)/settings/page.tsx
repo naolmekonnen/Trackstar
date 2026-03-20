@@ -40,7 +40,7 @@ export default function SettingsPage() {
   const [units, setUnits] = useState<"miles" | "km">("miles");
 
   return (
-    <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto px-4 pt-4 pb-8">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-8">
           <Link href="/profile" className="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center">
