@@ -177,7 +177,7 @@ export default function LandingPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/(app)/home"
+                  href="/home"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/10 text-base font-medium text-white/80 hover:bg-white/[0.04] transition-all"
                 >
                   Explore Demo
@@ -188,12 +188,22 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
               className="hidden lg:block"
             >
               <PhoneMockup />
             </motion.div>
           </div>
+
+          {/* Phone mockup for mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="lg:hidden mt-12 flex justify-center"
+          >
+            <PhoneMockup />
+          </motion.div>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#BFFF00]/[0.04] to-[#00E5FF]/[0.04] blur-[120px] rounded-full -z-10" />
       </section>
@@ -361,6 +371,83 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* Cinematic Recap Preview */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="mx-auto max-w-[260px] rounded-3xl bg-gradient-to-b from-[#1a1a2e] to-[#0A0A0C] border border-white/[0.08] p-6 aspect-[9/16] flex flex-col justify-between relative overflow-hidden">
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#BFFF00]/15 rounded-full blur-[40px]" />
+                <div className="relative">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#BFFF00] to-[#00E5FF] flex items-center justify-center">
+                      <Zap className="w-2.5 h-2.5 text-black" />
+                    </div>
+                    <span className="text-[10px] font-semibold tracking-wider">TRACKSTAR</span>
+                  </div>
+                  <svg viewBox="0 0 200 80" className="w-full opacity-50 mb-4">
+                    <path d="M10,60 Q30,10 60,40 T120,25 T180,50" fill="none" stroke="url(#recapGrad)" strokeWidth="2.5" strokeLinecap="round" />
+                    <defs>
+                      <linearGradient id="recapGrad" x1="0%" y1="0%" x2="100%">
+                        <stop offset="0%" stopColor="#BFFF00" />
+                        <stop offset="100%" stopColor="#00E5FF" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <div className="relative">
+                  <p className="text-4xl font-bold mb-0.5">6.8</p>
+                  <p className="text-white/40 text-xs mb-4">miles</p>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div><p className="text-sm font-bold">7:48</p><p className="text-[9px] text-white/30">pace</p></div>
+                    <div><p className="text-sm font-bold">53:00</p><p className="text-[9px] text-white/30">time</p></div>
+                    <div><p className="text-sm font-bold">82</p><p className="text-[9px] text-white/30">effort</p></div>
+                  </div>
+                  <div className="flex gap-1.5 mt-4">
+                    <span className="px-2 py-0.5 rounded-full bg-[#BFFF00]/15 text-[8px] text-[#BFFF00] font-medium">🔥 8 day streak</span>
+                    <span className="px-2 py-0.5 rounded-full bg-[#00E5FF]/15 text-[8px] text-[#00E5FF] font-medium">⚡ Fastest tempo</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-sm text-[#BFFF00] font-medium uppercase tracking-wider mb-3">Cinematic Recaps</p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+                Runs worth sharing
+              </h2>
+              <p className="text-white/40 mb-6 leading-relaxed">
+                Every run generates a beautiful, share-worthy recap card with your route art, stats, streak, persona badge, and race countdown. Post-worthy by default.
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Story and post formats",
+                  "Custom gradient backgrounds",
+                  "Route map art with start/finish markers",
+                  "Streak, PR, and persona badges",
+                  "Animated cinematic replay mode",
+                ].map(item => (
+                  <div key={item} className="flex items-center gap-2 text-sm text-white/50">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#BFFF00]" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[#BFFF00]/[0.04] blur-[100px] rounded-full -z-10" />
       </section>
 
       {/* CTA */}

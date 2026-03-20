@@ -91,7 +91,7 @@ export default function AuthPage() {
 
         <div className="mt-4 text-center">
           <Link
-            href="/(app)/home"
+            href="/home"
             className="text-xs text-[#BFFF00]/60 hover:text-[#BFFF00] transition-colors"
           >
             Skip to demo →

@@ -24,7 +24,7 @@ export default function RecapPage() {
     <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <Link href="/(app)/run" className="flex items-center gap-1 text-sm text-white/40">
+        <Link href="/run" className="flex items-center gap-1 text-sm text-white/40">
           <ChevronLeft className="w-4 h-4" /> Back
         </Link>
         <h1 className="text-lg font-bold">Run Recap</h1>

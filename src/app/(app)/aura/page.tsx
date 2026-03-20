@@ -15,7 +15,7 @@ const auraMetrics = [
 export default function AuraPage() {
   return (
     <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
-      <Link href="/(app)/home" className="flex items-center gap-1 text-sm text-white/40 mb-6">
+      <Link href="/home" className="flex items-center gap-1 text-sm text-white/40 mb-6">
         <ChevronLeft className="w-4 h-4" /> Back
       </Link>
 

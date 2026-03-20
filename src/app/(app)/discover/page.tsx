@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
-  MapPin, Users, Calendar, ChevronRight, Search,
-  Filter, Star, Clock
+  MapPin, Users, Calendar, Search,
+  Star, Clock
 } from "lucide-react";
 import { runClubs, races } from "@/lib/mock-data";
 

@@ -43,13 +43,13 @@ export default function SettingsPage() {
     <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-8">
-          <Link href="/(app)/profile" className="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center">
+          <Link href="/profile" className="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center">
             <ChevronLeft className="w-4 h-4 text-white/40" />
           </Link>
           <h1 className="text-2xl font-bold">Settings</h1>
         </div>
 
-        {settingSections.map((section, si) => (
+        {settingSections.map((section) => (
           <div key={section.title} className="mb-6">
             <h2 className="text-xs text-white/40 uppercase tracking-wider mb-3 px-1">{section.title}</h2>
             <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] overflow-hidden divide-y divide-white/[0.04]">

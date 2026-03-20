@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Link from "next/link";
 import {
-  Zap, Check, X, SkipForward, ChevronRight,
-  Calendar, TrendingUp, AlertCircle
+  Zap, Check, SkipForward, AlertCircle
 } from "lucide-react";
 import { trainingPlan, currentUser, coachMessages, getDaysUntilRace } from "@/lib/mock-data";
 

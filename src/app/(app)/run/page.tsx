@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import {
-  Play, Pause, Square, MapPin, Clock, Zap,
-  TrendingUp, Heart, Mountain, Share2, ChevronDown
+  Play, Pause, Square, MapPin, Zap,
+  TrendingUp, Heart, Mountain, Share2
 } from "lucide-react";
 import { recentRuns, formatDuration } from "@/lib/mock-data";
 
@@ -14,7 +14,7 @@ type RunMode = "idle" | "active" | "paused" | "complete";
 export default function RunPage() {
   const [mode, setMode] = useState<RunMode>("idle");
   const [selectedRun, setSelectedRun] = useState<number | null>(null);
-  const [elapsed, setElapsed] = useState(0);
+  const [elapsed] = useState(0);
   const [workoutType, setWorkoutType] = useState("tempo");
 
   const types = ["easy", "tempo", "interval", "long", "recovery", "race"];
@@ -117,7 +117,7 @@ export default function RunPage() {
           {/* Action Buttons */}
           <div className="flex gap-3">
             <Link
-              href="/(app)/recap"
+              href="/recap"
               className="flex-1 h-12 rounded-xl bg-gradient-to-r from-[#BFFF00] to-[#9ACC00] flex items-center justify-center gap-2 text-sm font-bold text-black"
             >
               <Share2 className="w-4 h-4" />

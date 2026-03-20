@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Link from "next/link";
 import {
-  Heart, MessageCircle, Share2, Zap, Trophy,
-  Flame, Users, ChevronRight, Send
+  Heart, MessageCircle, Share2, Trophy,
+  Flame, Users, Send
 } from "lucide-react";
 import { feedItems, friends, currentUser } from "@/lib/mock-data";
 
@@ -29,7 +28,7 @@ export default function SocialPage() {
   const toggleLike = (id: string) => {
     setLikedItems(prev => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) { next.delete(id); } else { next.add(id); }
       return next;
     });
   };

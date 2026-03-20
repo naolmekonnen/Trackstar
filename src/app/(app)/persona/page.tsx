@@ -11,7 +11,7 @@ export default function PersonaPage() {
 
   return (
     <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
-      <Link href="/(app)/home" className="flex items-center gap-1 text-sm text-white/40 mb-6">
+      <Link href="/home" className="flex items-center gap-1 text-sm text-white/40 mb-6">
         <ChevronLeft className="w-4 h-4" /> Back
       </Link>
 
@@ -86,7 +86,7 @@ export default function PersonaPage() {
       >
         <h3 className="text-xs text-white/40 uppercase tracking-wider mb-3">Strengths</h3>
         <div className="grid grid-cols-2 gap-2">
-          {persona.strengths.map((strength, i) => (
+          {persona.strengths.map((strength) => (
             <div key={strength} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
               <div className="w-1.5 h-1.5 rounded-full mb-2" style={{ backgroundColor: persona.color }} />
               <p className="text-sm font-medium">{strength}</p>

@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 import { Home, Calendar, Activity, Users, User } from "lucide-react";
 
 const tabs = [
-  { href: "/(app)/home", label: "Home", icon: Home },
-  { href: "/(app)/plan", label: "Plan", icon: Calendar },
-  { href: "/(app)/run", label: "Run", icon: Activity },
-  { href: "/(app)/social", label: "Social", icon: Users },
-  { href: "/(app)/profile", label: "Profile", icon: User },
+  { href: "/home", label: "Home", icon: Home },
+  { href: "/plan", label: "Plan", icon: Calendar },
+  { href: "/run", label: "Run", icon: Activity },
+  { href: "/social", label: "Social", icon: Users },
+  { href: "/profile", label: "Profile", icon: User },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -26,7 +26,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <nav className="fixed bottom-0 inset-x-0 z-50 bg-[#0A0A0C]/95 backdrop-blur-xl border-t border-white/[0.04]">
         <div className="max-w-lg mx-auto px-2 h-20 flex items-start pt-2">
           {tabs.map((tab) => {
-            const isActive = pathname.startsWith(tab.href);
+            const isActive = pathname === tab.href || (tab.href !== "/" && pathname.startsWith(tab.href + "/"));
             return (
               <Link
                 key={tab.href}

@@ -341,7 +341,7 @@ export default function OnboardingPage() {
       <div className="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C] to-transparent">
         <div className="max-w-lg mx-auto">
           <button
-            onClick={() => step === steps.length - 1 ? router.push("/(app)/home") : next()}
+            onClick={() => step === steps.length - 1 ? router.push("/home") : next()}
             className="w-full flex items-center justify-center gap-2 h-14 rounded-2xl bg-gradient-to-r from-[#BFFF00] to-[#9ACC00] text-base font-bold text-black hover:shadow-lg hover:shadow-[#BFFF00]/20 transition-all"
           >
             {step === steps.length - 1 ? "Enter Trackstar" : "Continue"}
