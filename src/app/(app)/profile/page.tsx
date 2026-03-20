@@ -4,207 +4,267 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   Settings, Share2, MapPin, Flame, Trophy,
-  Calendar, TrendingUp, Award, Watch, Users, ChevronRight
+  Award, Watch, Users, ChevronRight,
+  BarChart2
 } from "lucide-react";
 import { currentUser, recentRuns, weeklyStats } from "@/lib/mock-data";
 
 export default function ProfilePage() {
   return (
-    <div className="px-5 pt-14 pb-4 max-w-lg mx-auto">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Profile</h1>
-          <Link href="/settings" className="w-9 h-9 rounded-full bg-white/[0.05] flex items-center justify-center">
-            <Settings className="w-4 h-4 text-white/40" />
-          </Link>
+    <div className="max-w-lg mx-auto pb-8">
+      {/* Profile Header */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative"
+      >
+        {/* Banner */}
+        <div className="h-28 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#BFFF00]/15 via-[#00E5FF]/8 to-[#8B5CF6]/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08080A] to-transparent" />
         </div>
 
-        {/* Profile Card */}
-        <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6 mb-6">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#BFFF00]/8 to-transparent rounded-full -mr-10 -mt-10" />
-          <div className="relative flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#BFFF00] to-[#00E5FF] flex items-center justify-center text-lg font-bold text-black">
+        {/* Avatar + Name */}
+        <div className="px-4 -mt-10 relative z-10">
+          <div className="flex items-end gap-4">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#BFFF00] to-[#00E5FF] flex items-center justify-center text-xl font-bold text-black ring-4 ring-[#08080A]">
               {currentUser.avatar}
             </div>
-            <div className="flex-1">
-              <h2 className="text-xl font-bold">{currentUser.name}</h2>
-              <div className="flex items-center gap-1.5 mt-1">
+            <div className="flex-1 pb-1">
+              <h1 className="text-xl font-bold">{currentUser.name}</h1>
+              <div className="flex items-center gap-1.5 mt-0.5">
                 <MapPin className="w-3 h-3 text-white/30" />
-                <span className="text-sm text-white/40">{currentUser.location}</span>
+                <span className="text-[12px] text-white/40">{currentUser.location}</span>
               </div>
-              <p className="text-xs text-white/30 mt-0.5">Member since {currentUser.memberSince}</p>
+            </div>
+            <div className="flex gap-2 pb-1">
+              <Link href="/settings" className="w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center">
+                <Settings className="w-4 h-4 text-white/40" />
+              </Link>
+              <button className="w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center">
+                <Share2 className="w-4 h-4 text-white/40" />
+              </button>
             </div>
           </div>
 
-          {/* Persona & Score */}
-          <div className="flex gap-3 mt-5">
-            <Link href="/persona" className="flex-1 p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">⚡</span>
-                <div>
-                  <p className="text-xs font-semibold">{currentUser.persona}</p>
-                  <p className="text-[10px] text-white/30">Your persona</p>
-                </div>
-              </div>
+          {/* Persona & Score Chips */}
+          <div className="flex gap-2 mt-3">
+            <Link href="/persona" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.06] transition-colors">
+              <span className="text-sm">⚡</span>
+              <span className="text-[12px] font-semibold">{currentUser.persona}</span>
             </Link>
-            <Link href="/aura" className="flex-1 p-3 rounded-xl bg-gradient-to-r from-[#BFFF00]/8 to-[#00E5FF]/5 border border-white/[0.06]">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#BFFF00]/40 to-[#00E5FF]/30 flex items-center justify-center text-xs font-bold">
-                  {currentUser.runnerScore}
-                </div>
-                <div>
-                  <p className="text-xs font-semibold">Runner Score</p>
-                  <p className="text-[10px] text-[#BFFF00]">+{currentUser.runnerScoreChange} this week</p>
-                </div>
-              </div>
+            <Link href="/aura" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#BFFF00]/[0.06] border border-[#BFFF00]/10 hover:bg-[#BFFF00]/10 transition-colors">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#BFFF00]/50 to-[#00E5FF]/40 flex items-center justify-center text-[9px] font-bold">{currentUser.runnerScore}</div>
+              <span className="text-[12px] font-semibold text-[#BFFF00]">Score</span>
             </Link>
+            <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
+              <Flame className="w-3.5 h-3.5 text-orange-400" />
+              <span className="text-[12px] font-semibold">{currentUser.streak}d</span>
+            </div>
           </div>
         </div>
+      </motion.div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-2 mb-6">
+      {/* Stats Grid */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="px-4 mt-5"
+      >
+        <div className="grid grid-cols-4 gap-px rounded-xl overflow-hidden bg-white/[0.04]">
           {[
-            { icon: Flame, label: "Streak", value: `${currentUser.streak}d`, color: "text-orange-400" },
-            { icon: TrendingUp, label: "Total Runs", value: currentUser.totalRuns, color: "text-[#BFFF00]" },
-            { icon: MapPin, label: "Total Miles", value: `${currentUser.totalMiles}`, color: "text-[#00E5FF]" },
-            { icon: Trophy, label: "Best Half", value: currentUser.bestHalf.split(":").slice(0, 2).join(":"), color: "text-white" },
+            { label: "Runs", value: currentUser.totalRuns },
+            { label: "Miles", value: currentUser.totalMiles.toLocaleString() },
+            { label: "Streak", value: `${currentUser.streak}d` },
+            { label: "Clubs", value: currentUser.clubs.length },
           ].map(stat => (
-            <div key={stat.label} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-center">
-              <stat.icon className={`w-4 h-4 mx-auto mb-1 ${stat.color}`} />
-              <p className="text-lg font-bold">{stat.value}</p>
-              <p className="text-[9px] text-white/30 uppercase">{stat.label}</p>
+            <div key={stat.label} className="bg-[#08080A] p-3 text-center">
+              <p className="text-[16px] font-bold">{stat.value}</p>
+              <p className="text-[10px] text-white/30 uppercase mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
+      </motion.div>
 
-        {/* Goals */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-6">
-          <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-white/40" /> Current Goal
-          </h3>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium">{currentUser.raceName}</p>
-              <p className="text-xs text-white/40">May 17, 2026 · Half Marathon</p>
-            </div>
-            <Link href="/predictions" className="text-xs text-[#BFFF00]">
-              Prediction →
-            </Link>
+      {/* Weekly Progress */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="px-4 mt-4"
+      >
+        <div className="p-4 rounded-2xl glass-card">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-[13px] font-semibold flex items-center gap-2">
+              <BarChart2 className="w-4 h-4 text-white/40" /> Training Progress
+            </h3>
+            <span className="text-[11px] text-white/30">Last 8 weeks</span>
           </div>
-        </div>
-
-        {/* Weekly Progress Chart */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-6">
-          <h3 className="text-sm font-semibold mb-4">Weekly Progress</h3>
-          <div className="flex items-end gap-1 h-20">
-            {weeklyStats.map((week, i) => (
-              <div key={week.week} className="flex-1 flex flex-col items-center gap-1">
+          <div className="flex items-end gap-1.5 h-20 mb-2">
+            {weeklyStats.map((w, i) => (
+              <div key={w.week} className="flex-1 flex flex-col items-center gap-1">
                 <motion.div
                   initial={{ height: 0 }}
-                  animate={{ height: `${(week.miles / 35) * 100}%` }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                  className={`w-full rounded-t-md ${
+                  animate={{ height: `${(w.miles / 35) * 100}%` }}
+                  transition={{ delay: 0.2 + i * 0.04, duration: 0.5 }}
+                  className={`w-full rounded-t-sm ${
                     i === weeklyStats.length - 1
-                      ? "bg-gradient-to-t from-[#BFFF00] to-[#BFFF00]/60"
-                      : "bg-white/[0.08]"
+                      ? "bg-gradient-to-t from-[#BFFF00] to-[#BFFF00]/50"
+                      : "bg-white/[0.07]"
                   }`}
                 />
-                <span className="text-[8px] text-white/30">{week.week}</span>
               </div>
             ))}
           </div>
-          <div className="flex justify-between mt-2 text-[10px] text-white/30">
-            <span>8 weeks ago</span>
-            <span>This week: {weeklyStats[weeklyStats.length - 1].miles} mi</span>
+          <div className="flex justify-between text-[9px] text-white/20">
+            {weeklyStats.map(w => <span key={w.week}>{w.week}</span>)}
+          </div>
+          <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/[0.04]">
+            <span className="text-[11px] text-white/35">This week</span>
+            <span className="text-[13px] font-bold">{weeklyStats[weeklyStats.length - 1].miles} mi</span>
           </div>
         </div>
+      </motion.div>
 
-        {/* Best Times */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-6">
-          <h3 className="text-sm font-semibold mb-3">Personal Bests</h3>
-          <div className="grid grid-cols-2 gap-3">
+      {/* Personal Bests */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="px-4 mt-4"
+      >
+        <div className="p-4 rounded-2xl glass-card">
+          <h3 className="text-[13px] font-semibold mb-3 flex items-center gap-2">
+            <Trophy className="w-4 h-4 text-[#BFFF00]" /> Personal Bests
+          </h3>
+          <div className="grid grid-cols-2 gap-2">
             {[
-              { race: "5K", time: "22:48" },
-              { race: "10K", time: "47:22" },
-              { race: "Half Marathon", time: "1:52:14" },
-              { race: "Marathon", time: "—" },
+              { race: "5K", time: "22:48", pace: "7:20/mi" },
+              { race: "10K", time: "47:22", pace: "7:38/mi" },
+              { race: "Half Marathon", time: "1:52:14", pace: "8:35/mi" },
+              { race: "Marathon", time: "—", pace: "—" },
             ].map(pb => (
-              <div key={pb.race} className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
-                <p className="text-xs text-white/40 mb-0.5">{pb.race}</p>
-                <p className="text-lg font-bold">{pb.time}</p>
+              <div key={pb.race} className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                <p className="text-[10px] text-white/30 uppercase">{pb.race}</p>
+                <p className="text-[17px] font-bold mt-0.5">{pb.time}</p>
+                <p className="text-[10px] text-white/25 mt-0.5">{pb.pace}</p>
               </div>
             ))}
           </div>
         </div>
+      </motion.div>
 
-        {/* Recent Recaps */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold">Recent Recaps</h3>
-            <Link href="/recap" className="text-xs text-[#BFFF00]">View all</Link>
+      {/* Current Goal */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="px-4 mt-4"
+      >
+        <Link href="/predictions" className="block p-4 rounded-2xl bg-gradient-to-r from-[#BFFF00]/[0.05] to-[#00E5FF]/[0.03] border border-[#BFFF00]/10 group">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] text-[#BFFF00] font-semibold uppercase tracking-wider">Current Goal</p>
+              <p className="text-[15px] font-bold mt-0.5">{currentUser.raceName}</p>
+              <p className="text-[11px] text-white/35 mt-0.5">May 17, 2026 · Predicted: {currentUser.predictedHalf}</p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/40 transition-colors" />
           </div>
-          <div className="flex gap-3 overflow-x-auto hide-scrollbar">
-            {recentRuns.map(run => (
-              <Link key={run.id} href="/recap" className="shrink-0 w-32 rounded-xl bg-gradient-to-b from-white/[0.04] to-white/[0.02] border border-white/[0.06] p-3 hover:border-white/[0.1] transition-all">
-                <div className="h-16 rounded-lg bg-gradient-to-br from-[#BFFF00]/10 to-[#00E5FF]/5 mb-2 flex items-center justify-center">
-                  <svg viewBox="0 0 100 50" className="w-16 opacity-40">
-                    <path d="M5,35 Q15,5 35,25 T65,15 T95,30" fill="none" stroke="#BFFF00" strokeWidth="2" strokeLinecap="round" />
+        </Link>
+      </motion.div>
+
+      {/* Recent Recaps */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-5"
+      >
+        <div className="px-4 flex items-center justify-between mb-3">
+          <p className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">Recent Activities</p>
+          <Link href="/run" className="text-[11px] text-[#BFFF00] font-medium">View All</Link>
+        </div>
+        <div className="flex gap-3 overflow-x-auto hide-scrollbar px-4">
+          {recentRuns.map(run => (
+            <Link key={run.id} href="/run" className="shrink-0 w-[160px]">
+              <div className="rounded-xl glass-card overflow-hidden hover:bg-white/[0.04] transition-all">
+                <div className="h-20 bg-[#0d1117] relative overflow-hidden">
+                  <svg viewBox="0 0 160 80" className="w-full h-full opacity-40">
+                    <path d="M10,60 Q30,15 60,45 T120,25 T150,50" fill="none" stroke="#BFFF00" strokeWidth="2" strokeLinecap="round" />
+                    <circle cx="10" cy="60" r="3" fill="#BFFF00" />
+                    <circle cx="150" cy="50" r="3" fill="#00E5FF" />
                   </svg>
                 </div>
-                <p className="text-xs font-semibold">{run.distance} mi</p>
-                <p className="text-[10px] text-white/30">{run.pace}/mi</p>
-              </Link>
-            ))}
-          </div>
+                <div className="p-3">
+                  <p className="text-[12px] font-semibold capitalize">{run.type} Run</p>
+                  <p className="text-[13px] font-bold mt-0.5">{run.distance} mi · {run.pace}</p>
+                  <p className="text-[10px] text-white/25 mt-0.5">
+                    {run.date === "2026-03-20" ? "Today" : run.date === "2026-03-18" ? "2d ago" : "5d ago"}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
+      </motion.div>
 
-        {/* Badges */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-6">
-          <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+      {/* Badges */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="px-4 mt-5"
+      >
+        <div className="p-4 rounded-2xl glass-card">
+          <h3 className="text-[13px] font-semibold mb-3 flex items-center gap-2">
             <Award className="w-4 h-4 text-[#BFFF00]" /> Badges
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {currentUser.badges.map(badge => (
-              <span key={badge} className="px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-xs text-white/60">
+              <span key={badge} className="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.05] text-[11px] text-white/50">
                 {badge}
               </span>
             ))}
           </div>
         </div>
+      </motion.div>
 
-        {/* Connected Devices */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-6">
-          <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-            <Watch className="w-4 h-4 text-white/40" /> Connected Devices
-          </h3>
-          <div className="space-y-2">
-            {currentUser.connectedDevices.map(device => (
-              <div key={device} className="flex items-center justify-between py-2">
-                <span className="text-sm">{device}</span>
-                <span className="text-[10px] text-[#BFFF00]">Connected</span>
+      {/* Connected Devices + Clubs */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="px-4 mt-4 space-y-3"
+      >
+        <div className="rounded-2xl glass-card overflow-hidden divide-y divide-white/[0.04]">
+          <div className="p-4">
+            <h3 className="text-[12px] font-semibold text-white/45 uppercase tracking-wider mb-2.5">Connected Devices</h3>
+            {currentUser.connectedDevices.map(d => (
+              <div key={d} className="flex items-center justify-between py-1.5">
+                <div className="flex items-center gap-2">
+                  <Watch className="w-3.5 h-3.5 text-white/25" />
+                  <span className="text-[13px]">{d}</span>
+                </div>
+                <span className="text-[10px] text-[#BFFF00] font-medium">Synced</span>
               </div>
+            ))}
+          </div>
+          <div className="p-4">
+            <h3 className="text-[12px] font-semibold text-white/45 uppercase tracking-wider mb-2.5">Your Clubs</h3>
+            {currentUser.clubs.map(c => (
+              <Link key={c} href="/discover" className="flex items-center justify-between py-1.5 group">
+                <div className="flex items-center gap-2">
+                  <Users className="w-3.5 h-3.5 text-white/25" />
+                  <span className="text-[13px]">{c}</span>
+                </div>
+                <ChevronRight className="w-3.5 h-3.5 text-white/15 group-hover:text-white/30 transition-colors" />
+              </Link>
             ))}
           </div>
         </div>
 
-        {/* Clubs */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-          <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-            <Users className="w-4 h-4 text-white/40" /> Your Clubs
-          </h3>
-          {currentUser.clubs.map(club => (
-            <Link key={club} href="/discover" className="flex items-center justify-between py-2 group">
-              <span className="text-sm">{club}</span>
-              <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/40 transition-colors" />
-            </Link>
-          ))}
-        </div>
-
-        {/* Share Profile */}
-        <button className="w-full mt-6 h-12 rounded-xl bg-white/[0.05] border border-white/[0.06] flex items-center justify-center gap-2 text-sm font-medium text-white/60">
-          <Share2 className="w-4 h-4" /> Share Profile
-        </button>
+        <p className="text-center text-[10px] text-white/15 mt-4">Member since September 2025</p>
       </motion.div>
     </div>
   );
